@@ -1,11 +1,47 @@
-import React from 'react'
+import React from 'react';
+import {
+  EthereumClient,
+  modalConnectors,
+  walletConnectProvider,
+} from '@web3modal/ethereum';
+import { Web3Modal } from '@web3modal/react';
+import { configureChains, createClient, WagmiConfig } from 'wagmi';
+import { mainnet, goerli } from 'wagmi/chains';
 
-function App (): any {
+import { WALLETCONNECT_PROJECT_ID } from './config';
+import { WalletInfo } from './components/WalletInfo';
+
+const chains = [mainnet, goerli];
+const projectId = WALLETCONNECT_PROJECT_ID;
+const wagmiConfig = {
+  autoConnect: true,
+  connectors: modalConnectors({
+    projectId,
+    version: '1', // or "2"
+    appName: 'web3Modal',
+    chains,
+  }),
+};
+
+const { provider } = configureChains(chains, [
+  walletConnectProvider({ projectId }),
+]);
+const wagmiClient = createClient({
+  ...wagmiConfig,
+  provider,
+});
+const ethereumClient = new EthereumClient(wagmiClient, chains);
+
+const App = (): any => {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <>
+      <WagmiConfig client={wagmiClient}>
+        <WalletInfo />
+      </WagmiConfig>
 
-export default App
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+    </>
+  );
+};
+
+export default App;

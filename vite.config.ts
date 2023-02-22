@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import eslintPlugin from 'vite-plugin-eslint'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import eslintPlugin from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,7 +9,7 @@ export default defineConfig({
     eslintPlugin({
       cache: false,
       include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['node_modules', 'dist', 'build']
-    })
-  ]
-})
+      exclude: ['node_modules', 'dist', 'build'],
+    }),
+  ],
+});

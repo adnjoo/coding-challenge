@@ -15,8 +15,19 @@ module.exports = {
     project: './tsconfig.json'
   },
   plugins: [
-    'react'
+    'react', 'only-warn'
   ],
   rules: {
+    semi: ['error', 'always'],
+    '@typescript-eslint/semi': ['error', 'always'],
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/comma-dangle': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
+    'multiline-ternary': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
-}
+};
