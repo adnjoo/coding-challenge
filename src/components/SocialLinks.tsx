@@ -15,7 +15,7 @@ export const SocialLinks = ({
 }): JSX.Element => {
   return (
     <div className="p-4 m-10 text-3xl text-center text-white bg-slate-800">
-      {selectedCollection.name}
+      {selectedCollection.name} ({selectedCollection.symbol})
       <div className="flex items-center justify-center gap-4 my-2">
         {[
           {
@@ -31,6 +31,7 @@ export const SocialLinks = ({
             username: selectedCollection?.instagram_username,
           },
           { name: 'discord', url: selectedCollection?.discord_url },
+          { name: 'website', url: selectedCollection?.external_url },
         ].map((item, index) => (
           <React.Fragment key={index}>
             {item.username ?? item.url ? (
@@ -44,6 +45,8 @@ export const SocialLinks = ({
                     ? `https://instagram.com/${item.username}`
                     : item.name === 'discord'
                     ? `https://discord.com/invite/${item.url}`
+                    : item.name === 'website'
+                    ? item.url ?? ''
                     : ''
                 }
               >
@@ -59,6 +62,11 @@ export const SocialLinks = ({
                   />
                 ) : item.name === 'discord' ? (
                   <BsDiscord
+                    size={iconSize}
+                    className="transition transform hover:text-gray-300 hover:scale-105"
+                  />
+                ) : item.name === 'website' ? (
+                  <BiLinkAlt
                     size={iconSize}
                     className="transition transform hover:text-gray-300 hover:scale-105"
                   />
@@ -80,6 +88,8 @@ export const SocialLinks = ({
                   <BsInstagram size={iconSize} />
                 ) : item.name === 'discord' ? (
                   <BsDiscord size={iconSize} />
+                ) : item.name === 'website' ? (
+                  <BiLinkAlt size={iconSize} />
                 ) : (
                   <img src={etherscanLogo} width={iconSize} height={iconSize} />
                 )}
