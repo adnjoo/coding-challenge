@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import type { WalletAddress } from './EthBalance';
 import { ETHERSCAN_KEY } from '../../config';
 
 const GET_WETH_ROUTE = (address: string, mainNet = true): string => {
@@ -9,8 +10,6 @@ const GET_WETH_ROUTE = (address: string, mainNet = true): string => {
   }
   return `https://api-goerli.etherscan.io/api?module=account&action=tokenbalance&contractaddress=0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6&address=${address}&tag=latest&apikey=${ETHERSCAN_KEY}`;
 };
-
-type WalletAddress = `0x${string}` | undefined;
 
 interface GetWethBalanceParams {
   address: WalletAddress;
@@ -56,9 +55,7 @@ const WethBalance = ({ address, chain }: WethBalanceProps): JSX.Element => {
   }, [address, chain]);
 
   return (
-    <div className='m-10 bg-gray-900 text-white p-4'>
-      WETH Balance: {wethBalance}
-    </div>
+    <div className="m-10 bg-gray-900 text-white p-4">WETH Balance: {wethBalance}</div>
   );
 };
 

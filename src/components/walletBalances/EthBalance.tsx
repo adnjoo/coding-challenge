@@ -1,8 +1,10 @@
 import React from 'react';
 import { useBalance } from 'wagmi';
 
+export type WalletAddress = `0x${string}` | undefined;
+
 interface EthBalanceProps {
-  address: `0x${string}` | undefined;
+  address: WalletAddress;
 }
 
 export const EthBalance = ({ address }: EthBalanceProps): JSX.Element => {
@@ -16,9 +18,5 @@ export const EthBalance = ({ address }: EthBalanceProps): JSX.Element => {
     }
   }, [data]);
 
-  return (
-    <div className='m-10 bg-gray-900 text-white p-4'>
-      ETH Balance: {ethBalance}
-    </div>
-  );
+  return <div className="m-10 bg-gray-900 text-white p-4">ETH Balance: {ethBalance}</div>;
 };
