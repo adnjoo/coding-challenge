@@ -1,5 +1,5 @@
-import puppeteer from "puppeteer";
-import fs from "fs";
+import puppeteer from 'puppeteer';
+import fs from 'fs';
 
 (async () => {
   const browser = await puppeteer.launch();
@@ -7,11 +7,14 @@ import fs from "fs";
 
   await page.goto('http://localhost:5173');
 
+  // Select the third option from a select with id="collections"
+  await page.select('#collections', 'The Potatoz');
+
   if (!fs.existsSync('../docs')) {
     fs.mkdirSync('../docs');
   }
 
-  await page.screenshot({ path: '../docs/screenshot.png' });
+  await page.screenshot({ path: '../docs/screenshot-1.png' });
 
   await browser.close();
 })();
