@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import DescriptionWithLinks from './utils/DescriptionWithLinks';
 import { SocialLinks } from './SocialLinks';
+import { AssetCards } from './AssetCards';
 
 export interface CollectionMetaData {
   address: string;
@@ -47,7 +48,7 @@ export const SelectBar = (): JSX.Element => {
       (collection) => collection.name === event.target.value
     );
     console.log(selectedCollection);
-    setSelectedCollection(selectedCollection || null);
+    setSelectedCollection(selectedCollection ?? null);
   };
 
   return (
@@ -67,7 +68,7 @@ export const SelectBar = (): JSX.Element => {
       <h1 className="text-4xl font-bold text-white">Collections</h1>
       <select
         id="collections"
-        value={selectedCollection?.name || ''}
+        value={selectedCollection?.name ?? ''}
         onChange={handleSelectChange}
         className="flex justify-center w-full p-2 my-4 text-center text-white border border-gray-300 rounded-md bg-slate-800 hover:border-indigo-500 sm:w-1/2 md:w-1/3 xl:w-1/4"
       >
@@ -93,6 +94,9 @@ export const SelectBar = (): JSX.Element => {
             }}
           />
         </>
+      )}
+      {selectedCollection && (
+        <AssetCards collectionAddress={selectedCollection.address} />
       )}
     </div>
   );
