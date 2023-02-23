@@ -19,10 +19,10 @@ const EthBalance = ({ address }: EthBalanceProps): JSX.Element => {
   }, [data]);
 
   return (
-    <>
-      <FaEthereum size={20} className="mr-2" />
+    <div className="mb-4 flex">
+      <FaEthereum size={30} className="mr-2 hover:scale-110 transition duration-500" />
       <div>ETH {ethBalance}</div>
-    </>
+    </div>
   );
 };
 

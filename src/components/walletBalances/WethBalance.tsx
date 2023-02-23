@@ -28,7 +28,7 @@ const getWethBalance = async ({
   try {
     const res = await axios.get(route);
     const { result } = res.data;
-    return (Number(result) / 10 ** 18).toFixed(5);
+    return (Number(result) / 10 ** 18).toFixed(3);
   } catch (error) {
     throw new Error('Failed to get WETH balance');
   }
@@ -54,10 +54,15 @@ const WethBalance = ({ address, chain }: WethBalanceProps): JSX.Element => {
   }, [address, chain]);
 
   return (
-    <>
-      <img src={wrappedEthLogo} alt="Wrapped ETH Logo" className="w-6 h-6 mr-2" />
+    <div className="mb-4 flex">
+      <img
+        src={wrappedEthLogo}
+        alt="Wrapped ETH Logo"
+        className="mr-2 hover:scale-110 transition duration-500"
+        width={30}
+      />
       <div>WETH {wethBalance}</div>
-    </>
+    </div>
   );
 };
 

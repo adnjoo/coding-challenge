@@ -14,12 +14,8 @@ export const WalletInfo = (): any => {
       {isConnected ? (
         <div className="p-4 bg-gray-100 rounded-lg">
           <div className="text-lg font-medium mb-4">Address: {address}</div>
-          <div className="mb-4 flex">
-            <EthBalance address={address} />
-          </div>
-          <div className="mb-4 flex">
-            <WethBalance address={address} chain={chain} />
-          </div>
+          <EthBalance address={address} />
+          <WethBalance address={address} chain={chain} />
         </div>
       ) : (
         <div className="text-red-500">No Wallet Connected</div>
