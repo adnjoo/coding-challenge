@@ -1,8 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 
-import type { WalletAddress } from './EthBalance';
+import wrappedEthLogo from '/wrapped_eth.png';
 import { ETHERSCAN_KEY } from '../../config';
+
+export type WalletAddress = `0x${string}` | undefined;
+
+interface GetWethBalanceParams {
+  address: WalletAddress;
+  useProxy?: boolean;
+}
 
 const GET_WETH_ROUTE = (address: string, mainNet = true): string => {
   if (mainNet) {
@@ -11,12 +18,7 @@ const GET_WETH_ROUTE = (address: string, mainNet = true): string => {
   return `https://api-goerli.etherscan.io/api?module=account&action=tokenbalance&contractaddress=0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6&address=${address}&tag=latest&apikey=${ETHERSCAN_KEY}`;
 };
 
-interface GetWethBalanceParams {
-  address: WalletAddress;
-  useProxy?: boolean;
-}
-
-export const getWethBalance = async ({
+const getWethBalance = async ({
   address,
   useProxy = true,
 }: GetWethBalanceParams): Promise<string> => {
@@ -26,10 +28,7 @@ export const getWethBalance = async ({
   try {
     const res = await axios.get(route);
     const { result } = res.data;
-    return (result / 10 ** 18).toLocaleString(undefined, {
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 5,
-    });
+    return (Number(result) / 10 ** 18).toFixed(5);
   } catch (error) {
     throw new Error('Failed to get WETH balance');
   }
@@ -55,7 +54,10 @@ const WethBalance = ({ address, chain }: WethBalanceProps): JSX.Element => {
   }, [address, chain]);
 
   return (
-    <div className="m-10 bg-gray-900 text-white p-4">WETH Balance: {wethBalance}</div>
+    <>
+      <img src={wrappedEthLogo} alt="Wrapped ETH Logo" className="w-6 h-6 mr-2" />
+      <div>WETH {wethBalance}</div>
+    </>
   );
 };
 

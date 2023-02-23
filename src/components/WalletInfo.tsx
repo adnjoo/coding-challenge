@@ -1,38 +1,29 @@
 import React from 'react';
-import { Web3Button } from '@web3modal/react';
 import { useAccount, useNetwork } from 'wagmi';
 
-import skilletLogo from '/skillet_logo.png';
-import { EthBalance } from './walletBalances/EthBalance';
 import WethBalance from './walletBalances/WethBalance';
+import EthBalance from './walletBalances/EthBalance';
 
 export const WalletInfo = (): any => {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork();
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <img
-        src={skilletLogo}
-        alt='My Image'
-        className='m-10 w-72 bg-slate-800'
-      />
-      <div className='m-10 bg-slate-800 text-white p-4 text-3xl text-center'>
-        Wallet Information
-      </div>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <div className="text-xl font-medium mb-4">Wallet Information</div>
       {isConnected ? (
-        <div className=''>
-          <div className='m-10 bg-slate-800 text-white p-4'>Connected</div>
-          <div className='m-10 bg-slate-800 text-white p-4'>
-            Address: {address}
+        <div className="p-4 bg-gray-100 rounded-lg">
+          <div className="text-lg font-medium mb-4">Address: {address}</div>
+          <div className="mb-4 flex">
+            <EthBalance address={address} />
           </div>
-          <EthBalance address={address} />
-          <WethBalance address={address} chain={chain} />
+          <div className="mb-4 flex">
+            <WethBalance address={address} chain={chain} />
+          </div>
         </div>
       ) : (
-        <div className='text-white'>No Wallet Connected</div>
+        <div className="text-red-500">No Wallet Connected</div>
       )}
-      <Web3Button />
     </div>
   );
 };

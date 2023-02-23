@@ -11,6 +11,7 @@ import { mainnet, goerli } from 'wagmi/chains';
 import { WALLETCONNECT_PROJECT_ID } from './config';
 import { WalletInfo } from './components/WalletInfo';
 import { SelectBar } from './components/SelectBar';
+import Navbar from './components/NavBar';
 
 const chains = [mainnet, goerli];
 const projectId = WALLETCONNECT_PROJECT_ID;
@@ -24,9 +25,7 @@ const wagmiConfig = {
   }),
 };
 
-const { provider } = configureChains(chains, [
-  walletConnectProvider({ projectId }),
-]);
+const { provider } = configureChains(chains, [walletConnectProvider({ projectId })]);
 const wagmiClient = createClient({
   ...wagmiConfig,
   provider,
@@ -37,6 +36,7 @@ const App = (): any => {
   return (
     <>
       <WagmiConfig client={wagmiClient}>
+        <Navbar />
         <WalletInfo />
         <SelectBar />
       </WagmiConfig>
