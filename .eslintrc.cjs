@@ -23,7 +23,9 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',
+    '@typescript-eslint/indent': 'off',
     'multiline-ternary': 'off',
+    'import/no-absolute-path': 'off',
   },
   settings: {
     react: {

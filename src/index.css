@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  background: #a5a5a5;
+}
+
+.collection-description p a {
+  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+}
+
+.collection-description p a:hover {
+  color: #cacaca;
+}

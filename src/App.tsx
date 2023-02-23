@@ -10,6 +10,7 @@ import { mainnet, goerli } from 'wagmi/chains';
 
 import { WALLETCONNECT_PROJECT_ID } from './config';
 import { WalletInfo } from './components/WalletInfo';
+import { SelectBar } from './components/SelectBar';
 
 const chains = [mainnet, goerli];
 const projectId = WALLETCONNECT_PROJECT_ID;
@@ -37,6 +38,7 @@ const App = (): any => {
     <>
       <WagmiConfig client={wagmiClient}>
         <WalletInfo />
+        <SelectBar />
       </WagmiConfig>
 
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
