@@ -12,6 +12,7 @@ import { WALLETCONNECT_PROJECT_ID } from './config';
 import { WalletInfo } from './components/WalletInfo';
 import { SelectBar } from './components/SelectBar';
 import Navbar from './components/NavBar';
+import Footer from './components/Footer';
 
 const chains = [mainnet, goerli];
 const projectId = WALLETCONNECT_PROJECT_ID;
@@ -39,6 +40,7 @@ const App = (): any => {
         <Navbar />
         <WalletInfo />
         <SelectBar />
+        <Footer />
       </WagmiConfig>
 
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
