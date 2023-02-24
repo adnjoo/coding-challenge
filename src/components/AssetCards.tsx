@@ -20,6 +20,7 @@ export const AssetCards: React.FC<AssetCardsProps> = ({ collectionAddress }) => 
       )
       .then(({ data }) => {
         setAssets(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -27,13 +28,15 @@ export const AssetCards: React.FC<AssetCardsProps> = ({ collectionAddress }) => 
   }, [collectionAddress]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+    <div className="grid mx-4 sm:mx-6 md:mx-8 lg:mx-10 grid-cols-2 md:grid-cols-3 gap-4 mt-8">
       {assets.map((asset) => (
         <div key={asset.token_id} className="bg-white rounded-lg p-4">
           <img
             src={asset.image_url}
             alt={`NFT with token ID ${asset.token_id}`}
-            className="mx-auto mb-4"
+            className={`mx-auto mb-4 ${
+              assets.length <= 2 ? 'w-full' : 'w-1/2'
+            } outline outline-slate-800 rounded-lg`}
           />
           <div className="text-center">
             <p className="text-gray-800 font-bold">{asset.token_id}</p>

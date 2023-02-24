@@ -75,12 +75,11 @@ export const SocialLinks = ({
                     src={etherscanLogo}
                     width={iconSize}
                     height={iconSize}
-                    className="transition transform hover:scale-105"
+                    className="transition transform hover:scale-105 bg-white rounded-md"
                   />
                 )}
               </ExternalLink>
             ) : (
-              /* Render the icon without a link if no username or URL is present */
               <div className="text-slate-500">
                 {item.name === 'twitter' ? (
                   <BsTwitter size={iconSize} />
