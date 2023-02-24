@@ -14,7 +14,9 @@ export const WalletInfo = (): any => {
         <div className="text-xl font-medium mb-4">Wallet Information</div>
         {isConnected ? (
           <div className="p-4 bg-gray-100 rounded-lg">
-            <div className="text-lg font-medium mb-4">Address: {address}</div>
+            <div className="text-lg font-medium mb-4 overflow-auto">
+              Address: {address}
+            </div>
             <EthBalance address={address} />
             <WethBalance address={address} chain={chain} />
           </div>
