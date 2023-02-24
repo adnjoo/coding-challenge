@@ -14,7 +14,7 @@ import fs from 'fs';
     fs.mkdirSync('../docs');
   }
 
-  await page.screenshot({ path: '../docs/screenshot-1.png' });
+  await page.screenshot({ path: '../docs/screenshot.png' });
 
   await browser.close();
 })();
